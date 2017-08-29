@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" wrapper="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        #wrapper{
+            width: 100vw;
+            height: 100vh;
+            background: grey;
+            text-align: center;
+        }
+        #btn{
+            width: 100px;
+            height: 50px;
+            background: #000000;
+            color: #fff;
+            font-size: 15px;
+        }
+        #dialog{
+            width: 100vw;
+            height: 60vh;
+            background: cadetblue;
+        }
+        #mask{
+            width: 100vw;
+            height: 100vh;
+            background: #5e0000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index:2;
+            opacity: 0.9;
+        }
+        #dialog{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+        }
+        #close{
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+    </style>
+</head>
+<body>
+  <div id="wrapper"></div>
+</body>
+<script>
+    window.onload=function(){
+        //获得最大的容器
+        var container=document.getElementById("wrapper");
+        //创建一个button按钮
+        var button=document.createElement("button");
+        button.id="btn";
+        button.innerHTML="click me";
+        //将button插入容器中
+        container.appendChild(button);
+
+
+        //为button的点击事件绑定事件处理函数
+        button.addEventListener("click",function(){
+            //创建弹出的div
+            var pop=document.createElement("div");
+            pop.id="dialog";
+            //创建关闭按钮
+            var close=document.createElement("span");
+            close.id="close";
+            close.innerHTML="close";
+            //创建遮罩层div
+            var mask=document.createElement("div");
+            mask.id="mask";
+            //空的文档碎片
+            var frag=document.createDocumentFragment();
+            pop.appendChild(close);
+            frag.appendChild(pop);
+            frag.appendChild(mask);
+
+            var e=event||window.event;
+            container.appendChild(frag);
+            e.cancelBubble|| e.stopPropagation();
+
+
+        });
+        container.addEventListener("click",function(){
+            hidden();
+        });
+        function hidden(){
+            var e=event||window.event;
+            var target= e.target|| e.srcElement;
+            if(target.id!="dialog"){
+                container.removeChild(document.getElementById("mask"));
+                container.removeChild(document.getElementById("dialog"));
+            }
+        }
+    }
+</script>
+</html>

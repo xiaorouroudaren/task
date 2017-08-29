@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .wrapper{
+            margin: auto;
+        }
+        a{
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+            width: auto;
+            padding:0 8px 0 8px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid gainsboro;
+        }
+        a:hover{
+            border: 1px solid blue;
+        }
+    </style>
+
+
+    <script>
+        window.onload=function(){
+               page(1)
+       };
+        //总页数
+        var total=20;
+        function page(pageindex) {
+            var html = "";
+//            10个页码，分两种情况，一是总页码小于等于6，二是总页码大于6，
+            var num=pageindex-5;//总页码小于等于6
+            var endnum=pageindex+5;//总页码大于6
+            //取消num为负数的情况
+            if (num<=1) {
+                num=1;
+                endnum=total;
+                if(endnum>10){
+                    endnum=10;
+                }
+            }
+                //使总数一直不会无限增加
+                 if(endnum>total){
+                     endnum=total
+                 }
+            //上一页，在当前页大于1的情况下出现‘上一页’
+            if(pageindex>1){
+            html+='<a href="#" onclick="page(' + (pageindex-1) + ')">' + '<上一页' + '</a>&nbsp;';
+            }
+             //当前页码小于等于6时从1开始循环，当前页码大于6时从i++循环
+            for (var i = num; i <=endnum; i++) {
+                //当点击当前页时当前页码改变样式
+                if (i === pageindex) {
+                    html += '<span onclick="page(' + i + ')">' + i + '</span>&nbsp;';
+                }
+                //否则不改变
+                else {
+                    html += '<a href="#" onclick="page(' + i + ')">' + i + '</a>&nbsp;';
+                }
+            }
+            //下一页，当前值不等于总页码数的情况下
+            if(pageindex<total){
+                html+='<a href="#" onclick="page(' + (pageindex+1) + ')">' + '下一页>' + '</a>&nbsp;';
+                console.log(html)
+            }
+            //输出HTML文本
+                document.getElementById("divpage").innerHTML =html;
+            }
+    </script>
+</head>
+<body>
+<div class="wrapper" id="divpage">
+
+</div>
+</body>
+</html>

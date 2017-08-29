@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            padding: 0;
+        }
+        li{
+            width: 500px;
+            height: 50px;
+            background: teal;
+            color: white;
+            margin: 1px auto;
+        }
+        .product_list>div{
+            display: inline-block;
+            width: 240px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+
+        }
+        #total span{
+            display: inline-block;
+            width: 240px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        input{
+            width: 2em;
+            outline: none;
+            border: none;
+            text-align: center;
+        }
+        #total input{
+            width: 4em;
+            margin-left: 90px;
+        }
+        .del,.add{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .del_2,.add_2{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <ul>
+            <li class="product_list">
+                <div >
+                    <span>笔记本：6999元/台</span>
+                </div>
+                <div>
+                    <span class="del">-</span>
+                    <input type="text" readonly value="0" />
+                    <span class="add">+</span>
+                </div>
+            </li>
+            <li class="product_list">
+                <div>
+                    <span>充电宝：99元/台</span>
+                </div>
+                <div>
+                    <span class="del_2">-</span>
+                    <input type="text" readonly value="0" />
+                    <span  class="add_2">+</span>
+                </div>
+            </li>
+            <li id="total">
+                <span>总计：</span>
+                <input type="text" class="total" readonly value="0">&nbsp;元
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="shopping.js"></script>
+</html>
